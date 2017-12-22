@@ -1,0 +1,60 @@
+name: aws-comprehend
+description: Amazon Comprehend integration on Syncano.
+long_description: |
+  Visit link to know more about Amazon Comprehend
+  https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html
+version: 0.0.1
+
+keywords:
+  - aws
+  - comprehend
+  - NLP
+  - Natural Language Processing
+  - Key Phrases
+config:
+  AWS_REGION:
+    description: AWS region
+    required: true
+  AWS_SECRET_ACCESS_KEY:
+    description: AWS secret access key
+    long_description: |
+      Visit link to know more about managing keys
+      (http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html).
+    required: true
+  AWS_ACCESS_KEY_ID:
+    description: AWS access key id
+    long_description: |
+      Visit link to know more about managing keys
+      (http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html).
+    required: true
+
+endpoints:
+  hello:
+    description: Hello world!
+    file: hello.js
+    parameters:
+      firstname:
+        type: string
+        description: "First name of the person you want to greet"
+        example: "Tyler"
+      lastname:
+        type: string
+        description: "Last name of the person you want to greet"
+        example: "Durden"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+            "message": "Hello Tyler Durden!"
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "message": "You have to send "firstname" and "lastname" arguments!"
+            }
