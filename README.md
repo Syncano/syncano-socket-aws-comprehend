@@ -1,4 +1,5 @@
 # aws-comprehend socket
+[![CircleCI](https://circleci.com/gh/Syncano/syncano-socket-aws-comprehend.svg?style=svg)](https://circleci.com/gh/Syncano/syncano-socket-aws-comprehend)
 
 This socket integrates Amazon Comprehend to syncano.
 
@@ -86,7 +87,7 @@ This endpoint inspects the text of a batch of documents for named entities and r
 ```
 
 #### batch-detect-key-phrases
-Endpoint detects the key noun phrases found in a batch of documents
+This endpoint detects the key noun phrases found in a batch of documents
 
 *_Parameters_*
 
@@ -124,7 +125,7 @@ Endpoint detects the key noun phrases found in a batch of documents
 ```
 
 #### batch-detect-sentiment
-Endpoint inspects a batch of documents and returns an inference of the prevailing sentiment, POSITIVE, NEUTRAL, MIXED, NEGATIVE for each document
+This endpoint inspects a batch of documents and returns an inference of the prevailing sentiment, POSITIVE, NEUTRAL, MIXED, NEGATIVE for each document
 
 *_Parameters_*
 
@@ -293,7 +294,7 @@ This endpoint inspects text and returns an inference of the prevailing sentiment
 ```
 
 #### list-topics-detection-jobs
-Endpoint gets a list of the topic detection jobs that you have submitted
+This endpoint gets a list of the topic detection jobs that you have submitted
 
 *_Parameters_*
 
@@ -331,7 +332,7 @@ Endpoint gets a list of the topic detection jobs that you have submitted
 ```
 
 #### start-topics-detection-job
-Endpoint starts an asynchronous topic detection job
+This endpoint starts an asynchronous topic detection job
 *_Parameters_*
 
 | Name      | Type     | Description  | Example
@@ -352,3 +353,19 @@ Endpoint starts an asynchronous topic detection job
   "JobStatus": "string"
 }
 ```
+
+### Contributing
+
+#### How to Contribute
+  * Fork this repository
+  * Clone from your fork
+  * Make your contributions (Make sure your work is well tested)
+  * Create Pull request from the fork to this repo
+
+#### Setting up environment variables
+  * Create a `.env` on parent folder
+  * Copy contents of `.env-sample` file to newly created `.env` file and assign appropriate values to the listed variables.
+
+#### Testing
+  * Ensure all your test are written on the `test` directory
+  * Use the command `npm test` to run test
