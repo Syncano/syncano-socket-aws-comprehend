@@ -238,7 +238,7 @@ endpoints:
       JobId:
         type: string
         description: "The identifier assigned by the user to the detection job."
-        example: "en"
+        example: "11234"
     response:
       mimetype: application/json
       examples:
@@ -305,7 +305,7 @@ endpoints:
     parameters:
       Text:
         type: string
-        description: "A UTF-8 text string to detect dominant language."
+        description: "A UTF-8 text string to detect entities."
         example: "Bonjour monsieur Emmanuel"
       LanguageCode:
         type: string
@@ -342,7 +342,7 @@ endpoints:
     parameters:
       Text:
         type: string
-        description: "A UTF-8 text string to detect dominant language."
+        description: "A UTF-8 text string to detect key phrases."
         example: "Bonjour monsieur Emmanuel"
       LanguageCode:
         type: string
@@ -356,7 +356,7 @@ endpoints:
           description: Success
           example: |
             {
-              "Entities": [
+              "KeyPhrases": [
                 {
                   "BeginOffset": number,
                   "EndOffset": number,
@@ -378,7 +378,7 @@ endpoints:
     parameters:
       Text:
         type: string
-        description: "A UTF-8 text string to detect dominant language."
+        description: "A UTF-8 text string to detect sentiment."
         example: "Bonjour monsieur Emmanuel"
       LanguageCode:
         type: string
@@ -422,7 +422,7 @@ endpoints:
             "SubmitTimeBefore": new Date || 'Wed Dec 31 1969 16:00:00 GMT-0800 (PST)' || 123456789
           }
       MaxResults:
-        type: number
+        type: integer
         description: "The maximum number of results to return in each page"
         example: 0
       NextToken:
@@ -478,7 +478,7 @@ endpoints:
       DataAccessRoleArn:
         type: string
         description: "The IAM Amazon Resource Name (ARN) for the role that grants Amazon Comprehend read access to your input data"
-        example: "arn:aws:iam::123456789012:role/Comprehend_Default_Role"
+        example: "AmazonComprehendServiceRole-comprehend-role"
       InputDataConfig:
         type: object
         description: "Specifies the format and location of the input data for the job"
