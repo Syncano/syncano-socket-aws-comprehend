@@ -10,7 +10,7 @@ describe('list-topics-detection-jobs', () => {
       },
       MaxResults: 10
     };
-    run('list-topics-detection-jobs', {args, config})
+    run('list-topics-detection-jobs', { args, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 200);
         assert.property(res.data, 'TopicsDetectionJobPropertiesList');
@@ -26,7 +26,7 @@ describe('list-topics-detection-jobs', () => {
     const invalidArgs = {
       LanguageCode: 'en'
     };
-    run('list-topics-detection-jobs', {args: invalidArgs, config})
+    run('list-topics-detection-jobs', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

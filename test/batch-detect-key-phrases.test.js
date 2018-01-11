@@ -14,7 +14,7 @@ describe('batch-detect-key-phrases', () => {
         '(alongside quantum mechanics)'
       ]
     };
-    run('batch-detect-key-phrases', {args, config})
+    run('batch-detect-key-phrases', { args, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 200);
         assert.property(res.data, 'ResultList');
@@ -32,7 +32,7 @@ describe('batch-detect-key-phrases', () => {
     const invalidArgs = {
       LanguageCode: 'en'
     };
-    run('batch-detect-key-phrases', {args: invalidArgs, config})
+    run('batch-detect-key-phrases', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

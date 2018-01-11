@@ -14,7 +14,7 @@ describe('batch-detect-entities', () => {
         '(alongside quantum mechanics)'
       ]
     };
-    run('batch-detect-entities', {args, config})
+    run('batch-detect-entities', { args, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 200);
         assert.property(res.data, 'ResultList');
@@ -32,7 +32,7 @@ describe('batch-detect-entities', () => {
     const invalidArgs = {
       LanguageCode: 'en'
     };
-    run('batch-detect-entities', {args: invalidArgs, config})
+    run('batch-detect-entities', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

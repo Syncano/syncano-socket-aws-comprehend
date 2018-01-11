@@ -8,7 +8,7 @@ describe('detect-dominant-language', () => {
       Text: 'Que vous êtes joli ! Que vous me semblez beau. Bonjour monsieur Emmanuel, can we ' +
       'continue the discussion we had yesterday?'
     };
-    run('detect-dominant-language', {args, config})
+    run('detect-dominant-language', { args, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 200);
         assert.property(res.data, 'Languages');
@@ -26,7 +26,7 @@ describe('detect-dominant-language', () => {
     const invalidArgs = {
       Text: ''
     };
-    run('detect-dominant-language', {args: invalidArgs, config})
+    run('detect-dominant-language', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

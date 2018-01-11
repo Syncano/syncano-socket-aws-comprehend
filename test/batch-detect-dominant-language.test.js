@@ -12,7 +12,7 @@ describe('batch-detect-dominant-language', () => {
         'par l’odeur alléché, Lui tint à peu près ce langage'
       ]
     };
-    run('batch-detect-dominant-language', {args, config})
+    run('batch-detect-dominant-language', { args, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 200);
         assert.property(res.data, 'ResultList');
@@ -30,7 +30,7 @@ describe('batch-detect-dominant-language', () => {
     const invalidArgs = {
       TextList: []
     };
-    run('batch-detect-dominant-language', {args: invalidArgs, config})
+    run('batch-detect-dominant-language', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

@@ -26,7 +26,7 @@ const callEndpoint = (endpoint, params, awsConfig) => {
     awsComprehendConfig(awsConfig)[endpoint](params)
       .promise()
       .then((res) => {
-        resolve({ ...res, statusCode: 200 });
+        resolve({ data: res, statusCode: 200 });
       })
       .catch((error) => {
         const statusCode = (error.statusCode) ? error.statusCode : 400;

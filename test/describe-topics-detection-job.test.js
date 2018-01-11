@@ -6,7 +6,7 @@ describe('describe-topics-detection-job', () => {
   it('should return properties associated with a topic detection job if valid parameters supplied',
     (done) => {
       const args = { JobId: TOPIC_JOB_ID };
-      run('describe-topics-detection-job', {args, config})
+      run('describe-topics-detection-job', { args, config })
         .then((res) => {
           assert.propertyVal(res, 'code', 200);
           assert.property(res.data, 'TopicsDetectionJobProperties');
@@ -21,7 +21,7 @@ describe('describe-topics-detection-job', () => {
 
   it('should fail if argument "JobId" property is empty', (done) => {
     const invalidArgs = { JobId: '' };
-    run('describe-topics-detection-job', {args: invalidArgs, config})
+    run('describe-topics-detection-job', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

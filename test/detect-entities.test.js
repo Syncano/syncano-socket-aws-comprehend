@@ -10,7 +10,7 @@ describe('detect-entities', () => {
       'Einstein developed the theory of relativity, one of the two pillars of modern physics ' +
       '(alongside quantum mechanics)'
     };
-    run('detect-entities', {args, config})
+    run('detect-entities', { args, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 200);
         assert.property(res.data, 'Entities');
@@ -29,7 +29,7 @@ describe('detect-entities', () => {
       LanguageCode: 'en',
       Text: ''
     };
-    run('detect-entities', {args: invalidArgs, config})
+    run('detect-entities', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

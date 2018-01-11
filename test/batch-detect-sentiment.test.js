@@ -14,7 +14,7 @@ describe('batch-detect-sentiment', () => {
         'Einstein developed the theory of relativity, one of the two pillars of modern physics '
       ]
     };
-    run('batch-detect-sentiment', {args, config})
+    run('batch-detect-sentiment', { args, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 200);
         assert.property(res.data, 'ResultList');
@@ -34,7 +34,7 @@ describe('batch-detect-sentiment', () => {
     const invalidArgs = {
       LanguageCode: 'en'
     };
-    run('batch-detect-sentiment', {args: invalidArgs, config})
+    run('batch-detect-sentiment', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

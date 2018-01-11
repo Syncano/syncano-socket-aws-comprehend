@@ -9,7 +9,7 @@ describe('detect-sentiment', () => {
       Text: 'Syncano helps the startups in our Fintech and Insurtech accelerator programs to ' +
       'reach product market fit faster'
     };
-    run('detect-sentiment', {args, config})
+    run('detect-sentiment', { args, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 200);
         assert.property(res.data, 'Sentiment');
@@ -27,7 +27,7 @@ describe('detect-sentiment', () => {
       LanguageCode: 'en',
       Text: ''
     };
-    run('detect-sentiment', {args: invalidArgs, config})
+    run('detect-sentiment', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');

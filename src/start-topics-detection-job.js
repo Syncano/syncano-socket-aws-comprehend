@@ -2,11 +2,11 @@ import Syncano from 'syncano-server';
 import callEndpoint from './utils/helpers';
 
 export default async (ctx) => {
-  const {response} = Syncano(ctx);
+  const { response } = Syncano(ctx);
 
   try {
     const result = await callEndpoint('startTopicsDetectionJob', ctx.args, ctx.config);
-    const {statusCode, ...data} = result;
+    const { statusCode, data } = result;
     response.json(data, statusCode);
   } catch (err) {
     const { statusCode, error } = err;

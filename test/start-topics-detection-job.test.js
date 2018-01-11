@@ -41,7 +41,7 @@ describe('start-topics-detection-job', () => {
 
   it('should fail if argument "DataAccessRoleArn" property is empty', (done) => {
     const invalidArgs = { ...args, DataAccessRoleArn: '' };
-    run('start-topics-detection-job', {args: invalidArgs, config})
+    run('start-topics-detection-job', { args: invalidArgs, config })
       .then((res) => {
         assert.propertyVal(res, 'code', 400);
         assert.property(res.data, 'message');
