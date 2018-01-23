@@ -14,6 +14,9 @@ keywords:
 config:
   AWS_REGION:
     description: AWS region
+    long_description: >
+      Check link below for aws comprehend available regions
+      (https://docs.aws.amazon.com/comprehend/latest/dg/guidelines-and-limits.html)
     required: true
   AWS_SECRET_ACCESS_KEY:
     description: AWS secret access key
@@ -29,18 +32,16 @@ config:
     required: true
 
 endpoints:
-  hello:
-    description: Hello world!
-    file: hello.js
+  batch-detect-dominant-language:
+    description: Determines the dominant language of the input text for a batch of documents.
     parameters:
-      firstname:
-        type: string
-        description: "First name of the person you want to greet"
-        example: "Tyler"
-      lastname:
-        type: string
-        description: "Last name of the person you want to greet"
-        example: "Durden"
+      TextList:
+        type: array
+        description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
+        example: |
+          [
+            'STRING_VALUE',
+          ]
     response:
       mimetype: application/json
       examples:
@@ -49,12 +50,478 @@ endpoints:
           description: Success
           example: |
             {
-            "message": "Hello Tyler Durden!"
+              "ErrorList": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string",
+                  "Index": number
+                }
+              ],
+              "ResultList": [
+                {
+                  "Index": number,
+                  "Languages": [
+                    {
+                      "LanguageCode": "string",
+                      "Score": number
+                    }
+                  ]
+                }
+              ]
             }
         -
           exit_code: 400
           description: Failed
           example: |
             {
-              "message": "You have to send "firstname" and "lastname" arguments!"
+              "code": "MultipleValidationErrors",
+              "message": Error! Request or request.textlist field can not be null/empty
             }
+  batch-detect-entities:
+    description: Inspects the text of a batch of documents for named entities and returns information about them.
+    parameters:
+      LanguageCode:
+        type: string
+        description: "Language of the input documents. All documents must be in the same language."
+        example: "en"
+      TextList:
+        type: array
+        description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
+        example: |
+          [
+            'STRING_VALUE',
+          ]
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "ErrorList": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string",
+                  "Index": number
+                }
+              ],
+              "ResultList": [
+                {
+                  "Index": number,
+                  "Entities": [
+                    {
+                      "BeginOffset": number,
+                      "EndOffset": number,
+                      "Score": number,
+                      "Text": "string",
+                      "Type": "string"
+                    }
+                  ]
+                }
+              ]
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "MissingRequiredParameter",
+              "message": Missing required key 'TextList' in params
+            }
+  batch-detect-key-phrases:
+    description: Detects the key noun phrases found in a batch of documents.
+    parameters:
+      LanguageCode:
+        type: string
+        description: "Language of the input documents. All documents must be in the same language."
+        example: "en"
+      TextList:
+        type: array
+        description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
+        example: |
+          [
+            'STRING_VALUE',
+          ]
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "ErrorList": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string",
+                  "Index": number
+                }
+              ],
+              "ResultList": [
+                {
+                  "Index": number,
+                  "KeyPhrases": [
+                    {
+                      "BeginOffset": number,
+                      "EndOffset": number,
+                      "Score": number,
+                      "Text": "string"
+                    }
+                  ]
+                }
+              ]
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "MissingRequiredParameter",
+              "message": Missing required key 'TextList' in params
+            }
+  batch-detect-sentiment:
+    description: Inspects a batch of documents and returns an inference of the prevailing sentiment, POSITIVE, NEUTRAL, MIXED, NEGATIVE for each
+    parameters:
+      LanguageCode:
+        type: string
+        description: "Language of the input documents. All documents must be in the same language."
+        example: "en"
+      TextList:
+        type: array
+        description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
+        example: |
+          [
+            'STRING_VALUE',
+          ]
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "ErrorList": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string",
+                  "Index": number
+                }
+              ],
+              "ResultList": [
+                {
+                  "Index": number,
+                  "Sentiment": string,
+                  "SentimentScore": [
+                    {
+                      "Mixed": number,
+                      "Negative": number,
+                      "Neutral": number,
+                      "Positive": number
+                    }
+                  ]
+                }
+              ]
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "MissingRequiredParameter",
+              "message": Missing required key 'TextList' in params
+            }
+  describe-topics-detection-job:
+    description: Gets the properties associated with a topic detection job. Use this operation to get the status of a detection job.
+    parameters:
+      JobId:
+        type: string
+        description: "The identifier assigned by the user to the detection job."
+        example: "11234"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "TopicsDetectionJobProperties": {
+                "EndTime": number,
+                "InputDataConfig": {
+                  "InputFormat": "string",
+                  "S3Uri": "string"
+                },
+                "JobId": "string",
+                "JobName": "string",
+                "JobStatus": "string",
+                "Message": "string",
+                "NumberOfTopics": number,
+                "OutputDataConfig": {
+                  "S3Uri": "string"
+                },
+                "SubmitTime": number
+              }
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "MissingRequiredParameter"
+            }
+  detect-dominant-language:
+    description: Determines the dominant language of the input text
+    parameters:
+      Text:
+        type: string
+        description: "A UTF-8 text string to detect dominant language."
+        example: "Bonjour monsieur Emmanuel"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "Languages": [
+                {
+                  "LanguageCode": "string",
+                  "Score": number
+                }
+              ]
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "ValidationException"
+            }
+  detect-entities:
+    description: Inspects text for named entities, and returns information about them.
+    parameters:
+      Text:
+        type: string
+        description: "A UTF-8 text string to detect entities."
+        example: "Bonjour monsieur Emmanuel"
+      LanguageCode:
+        type: string
+        description: "Language of the input document."
+        example: "en"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "Entities": [
+                {
+                  "BeginOffset": number,
+                  "EndOffset": number,
+                  "Score": number,
+                  "Text": "string",
+                  "Type": "string"
+                }
+              ]
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "MissingRequiredParameter",
+              "message": Missing required key 'Text' in params
+            }
+  detect-key-phrases:
+    description: Detects the key noun phrases found in the text.
+    parameters:
+      Text:
+        type: string
+        description: "A UTF-8 text string to detect key phrases."
+        example: "Bonjour monsieur Emmanuel"
+      LanguageCode:
+        type: string
+        description: "Language of the input document."
+        example: "en"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "KeyPhrases": [
+                {
+                  "BeginOffset": number,
+                  "EndOffset": number,
+                  "Score": number,
+                  "Text": "string"
+                }
+              ]
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "MissingRequiredParameter",
+              "message": Missing required key 'Text' in params
+            }
+  detect-sentiment:
+    description: Inspects text and returns an inference of the prevailing sentiment, POSITIVE, NEUTRAL, MIXED, or NEGATIVE
+    parameters:
+      Text:
+        type: string
+        description: "A UTF-8 text string to detect sentiment."
+        example: "Bonjour monsieur Emmanuel"
+      LanguageCode:
+        type: string
+        description: "Language of the input document."
+        example: "en"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "Sentiment": "string",
+              "SentimentScore": {
+                "Mixed": number,
+                "Negative": number,
+                "Neutral": number,
+                "Positive": number
+              }
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "MissingRequiredParameter",
+              "message": Missing required key 'Text' in params
+            }
+  list-topics-detection-jobs:
+    description: Gets a list of the topic detection jobs that you have submitted
+    parameters:
+      Filter:
+        type: object
+        description: "Filters the jobs that are returned. Jobs can be filtered on their name, status, or the date and time that they were submitted"
+        example: |
+          {
+            "jobName": "STRING_VALUE",
+            "JobStatus": SUBMITTED | IN_PROGRESS | COMPLETED | FAILED,
+            "SubmitTimeAfter": new Date || 'Wed Dec 31 1969 16:00:00 GMT-0800 (PST)' || 123456789,
+            "SubmitTimeBefore": new Date || 'Wed Dec 31 1969 16:00:00 GMT-0800 (PST)' || 123456789
+          }
+      MaxResults:
+        type: integer
+        description: "The maximum number of results to return in each page"
+        example: 0
+      NextToken:
+        type: string
+        description: "Identifies the next page of results to return"
+        example: "STRING_VALUE"
+      LanguageCode:
+        type: string
+        description: "Language of the input document."
+        example: "en"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "NextToken": "string",
+              "TopicsDetectionJobPropertiesList": [
+                {
+                  "EndTime": number,
+                  "InputDataConfig": {
+                    "InputFormat": "string",
+                    "S3Uri": "string"
+                  },
+                  "JobId": "string",
+                  "JobName": "string",
+                  "JobStatus": "string",
+                  "Message": "string",
+                  "NumberOfTopics": number,
+                  "OutputDataConfig": {
+                    "S3Uri": "string"
+                  },
+                  "SubmitTime": number
+                }
+              ]
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "ValidationException"
+            }
+  start-topics-detection-job:
+    description: Starts an asynchronous topic detection job
+    parameters:
+      JobName:
+        type: string
+        description: "The identifier of the job"
+        example: "sample-job"
+      DataAccessRoleArn:
+        type: string
+        description: "The IAM Amazon Resource Name (ARN) for the role that grants Amazon Comprehend read access to your input data"
+        example: "AmazonComprehendServiceRole-comprehend-role"
+      InputDataConfig:
+        type: object
+        description: "Specifies the format and location of the input data for the job"
+        example: |
+          {
+            "S3Uri": "STRING_VALUE",
+            "InputFormat": ONE_DOC_PER_FILE | ONE_DOC_PER_LINE
+          }
+      OutputDataConfig:
+        type: object
+        description: "Specifies where to send the output files"
+        example: |
+          {
+            "S3Uri": "STRING_VALUE"
+          }
+      ClientRequestToken:
+        type: string
+        description: "A unique identifier for the request. If you do not set the client request token, Amazon Comprehend generates one"
+        example: "sample-token"
+      NumberOfTopics:
+        type: number
+        description: "The number of topics to detect"
+        example: 0
+      LanguageCode:
+        type: string
+        description: "Language of the input document."
+        example: "en"
+    response:
+      mimetype: application/json
+      examples:
+        -
+          exit_code: 200
+          description: Success
+          example: |
+            {
+              "JobId": "string",
+              "JobStatus": "string"
+            }
+        -
+          exit_code: 400
+          description: Failed
+          example: |
+            {
+              "code": "ValidationException"
+            }
+
