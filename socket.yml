@@ -38,10 +38,7 @@ endpoints:
       TextList:
         type: array
         description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
-        example: |
-          [
-            'STRING_VALUE',
-          ]
+        example: "['Syncano is a development platform', 'Maître Corbeau, sur un arbre perché']"
     response:
       mimetype: application/json
       examples:
@@ -87,10 +84,7 @@ endpoints:
       TextList:
         type: array
         description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
-        example: |
-          [
-            'STRING_VALUE',
-          ]
+        example: "['Syncano is a development platform', 'Maître Corbeau, sur un arbre perché']"
     response:
       mimetype: application/json
       examples:
@@ -139,10 +133,7 @@ endpoints:
       TextList:
         type: array
         description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
-        example: |
-          [
-            'STRING_VALUE',
-          ]
+        example: "['Syncano is a development platform', 'Maître Corbeau, sur un arbre perché']"
     response:
       mimetype: application/json
       examples:
@@ -190,10 +181,7 @@ endpoints:
       TextList:
         type: array
         description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
-        example: |
-          [
-            'STRING_VALUE',
-          ]
+        example: "['Syncano is a development platform', 'Maître Corbeau, sur un arbre perché']"
     response:
       mimetype: application/json
       examples:
@@ -417,9 +405,9 @@ endpoints:
         example: |
           {
             "jobName": "STRING_VALUE",
-            "JobStatus": SUBMITTED | IN_PROGRESS | COMPLETED | FAILED,
-            "SubmitTimeAfter": new Date || 'Wed Dec 31 1969 16:00:00 GMT-0800 (PST)' || 123456789,
-            "SubmitTimeBefore": new Date || 'Wed Dec 31 1969 16:00:00 GMT-0800 (PST)' || 123456789
+            "JobStatus": SUBMITTED,
+            "SubmitTimeAfter": 'Wed Dec 31 1969 16:00:00 GMT-0800 (PST)',
+            "SubmitTimeBefore": 'Wed Dec 31 1969 16:00:00 GMT-0800 (PST)'
           }
       MaxResults:
         type: integer
@@ -485,7 +473,7 @@ endpoints:
         example: |
           {
             "S3Uri": "STRING_VALUE",
-            "InputFormat": ONE_DOC_PER_FILE | ONE_DOC_PER_LINE
+            "InputFormat": ONE_DOC_PER_FILE
           }
       OutputDataConfig:
         type: object
