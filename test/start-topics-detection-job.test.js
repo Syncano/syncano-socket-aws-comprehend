@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { run } from 'syncano-test';
+import { run } from '@syncano/test';
 import nock from 'nock';
 import request from 'supertest';
 import {

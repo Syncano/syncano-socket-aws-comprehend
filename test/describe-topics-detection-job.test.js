@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { run } from 'syncano-test';
+import { run } from '@syncano/test';
 import { config, TOPIC_JOB_ID } from './utils/helpers';
 
 describe('describe-topics-detection-job', () => {
