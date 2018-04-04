@@ -3,8 +3,7 @@ description: Amazon Comprehend integration on Syncano.
 long_description: |
   Visit link to know more about Amazon Comprehend
   https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html
-version: 0.0.1
-
+version: 0.0.3
 keywords:
   - aws
   - comprehend
@@ -22,26 +21,33 @@ config:
     required: true
   AWS_SECRET_ACCESS_KEY:
     description: AWS secret access key
-    long_description: |
+    long_description: >
       Visit link to know more about managing keys
+
       (http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html).
     required: true
   AWS_ACCESS_KEY_ID:
     description: AWS access key id
-    long_description: |
+    long_description: >
       Visit link to know more about managing keys
+
       (http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html).
     required: true
-
 endpoints:
   batch-detect-dominant-language:
-    description: Determines the dominant language of the input text for a batch of documents.
+    description: >-
+      Determines the dominant language of the input text for a batch of
+      documents.
     inputs:
       properties:
         TextList:
           type: array
-          description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
-          example: "['Syncano is a development platform', 'Maître Corbeau, sur un arbre perché']"
+          description: >-
+            List containing the text of the input documents. The list can
+            contain a maximum of 25 documents.
+          example: >-
+            ['Syncano is a development platform', 'Maître Corbeau, sur un arbre
+            perché']
     outputs:
       success:
         description: Success
@@ -86,19 +92,26 @@ endpoints:
                   "code": "MultipleValidationErrors",
                   "message": Error! Request or request.textlist field can not be null/empty
                 }
-
   batch-detect-entities:
-    description: Inspects the text of a batch of documents for named entities and returns information about them.
+    description: >-
+      Inspects the text of a batch of documents for named entities and returns
+      information about them.
     inputs:
       properties:
         LanguageCode:
           type: string
-          description: "Language of the input documents. All documents must be in the same language."
-          example: "en"
+          description: >-
+            Language of the input documents. All documents must be in the same
+            language.
+          example: en
         TextList:
           type: array
-          description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
-          example: "['Syncano is a development platform', 'Maître Corbeau, sur un arbre perché']"
+          description: >-
+            List containing the text of the input documents. The list can
+            contain a maximum of 25 documents.
+          example: >-
+            ['Syncano is a development platform', 'Maître Corbeau, sur un arbre
+            perché']
     outputs:
       success:
         description: Success
@@ -146,19 +159,24 @@ endpoints:
                   "code": "MissingRequiredParameter",
                   "message": Missing required key 'TextList' in params
                 }
-
   batch-detect-key-phrases:
     description: Detects the key noun phrases found in a batch of documents.
     inputs:
       properties:
         LanguageCode:
           type: string
-          description: "Language of the input documents. All documents must be in the same language."
-          example: "en"
+          description: >-
+            Language of the input documents. All documents must be in the same
+            language.
+          example: en
         TextList:
           type: array
-          description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
-          example: "['Syncano is a development platform', 'Maître Corbeau, sur un arbre perché']"
+          description: >-
+            List containing the text of the input documents. The list can
+            contain a maximum of 25 documents.
+          example: >-
+            ['Syncano is a development platform', 'Maître Corbeau, sur un arbre
+            perché']
     outputs:
       success:
         description: Success
@@ -205,19 +223,26 @@ endpoints:
                   "code": "MissingRequiredParameter",
                   "message": Missing required key 'TextList' in params
                 }
-
   batch-detect-sentiment:
-    description: Inspects a batch of documents and returns an inference of the prevailing sentiment, POSITIVE, NEUTRAL, MIXED, NEGATIVE for each
+    description: >-
+      Inspects a batch of documents and returns an inference of the prevailing
+      sentiment, POSITIVE, NEUTRAL, MIXED, NEGATIVE for each
     inputs:
       properties:
         LanguageCode:
           type: string
-          description: "Language of the input documents. All documents must be in the same language."
-          example: "en"
+          description: >-
+            Language of the input documents. All documents must be in the same
+            language.
+          example: en
         TextList:
           type: array
-          description: "List containing the text of the input documents. The list can contain a maximum of 25 documents."
-          example: "['Syncano is a development platform', 'Maître Corbeau, sur un arbre perché']"
+          description: >-
+            List containing the text of the input documents. The list can
+            contain a maximum of 25 documents.
+          example: >-
+            ['Syncano is a development platform', 'Maître Corbeau, sur un arbre
+            perché']
     outputs:
       success:
         description: Success
@@ -265,15 +290,16 @@ endpoints:
                   "code": "MissingRequiredParameter",
                   "message": Missing required key 'TextList' in params
                 }
-
   describe-topics-detection-job:
-    description: Gets the properties associated with a topic detection job. Use this operation to get the status of a detection job.
+    description: >-
+      Gets the properties associated with a topic detection job. Use this
+      operation to get the status of a detection job.
     inputs:
       properties:
         JobId:
           type: string
-          description: "The identifier assigned by the user to the detection job."
-          example: "11234"
+          description: The identifier assigned by the user to the detection job.
+          example: '11234'
     outputs:
       success:
         description: Success
@@ -315,15 +341,14 @@ endpoints:
                 {
                   "code": "MissingRequiredParameter"
                 }
-
   detect-dominant-language:
     description: Determines the dominant language of the input text
     inputs:
       properties:
         Text:
           type: string
-          description: "A UTF-8 text string to detect dominant language."
-          example: "Bonjour monsieur Emmanuel"
+          description: A UTF-8 text string to detect dominant language.
+          example: Bonjour monsieur Emmanuel
     outputs:
       success:
         description: Success
@@ -355,19 +380,18 @@ endpoints:
                 {
                   "code": "ValidationException"
                 }
-  
   detect-entities:
-    description: Inspects text for named entities, and returns information about them.
+    description: 'Inspects text for named entities, and returns information about them.'
     inputs:
       properties:
         Text:
           type: string
-          description: "A UTF-8 text string to detect dominant language."
-          example: "Bonjour monsieur Emmanuel"
+          description: A UTF-8 text string to detect dominant language.
+          example: Bonjour monsieur Emmanuel
         LanguageCode:
           type: string
-          description: "Language of the input document."
-          example: "en"
+          description: Language of the input document.
+          example: en
     outputs:
       success:
         description: Success
@@ -403,19 +427,18 @@ endpoints:
                   "code": "MissingRequiredParameter",
                   "message": Missing required key 'Text' in params
                 }
-
   detect-key-phrases:
     description: Detects the key noun phrases found in the text.
     inputs:
       properties:
         Text:
           type: string
-          description: "A UTF-8 text string to detect key phrases."
-          example: "Bonjour monsieur Emmanuel"
+          description: A UTF-8 text string to detect key phrases.
+          example: Bonjour monsieur Emmanuel
         LanguageCode:
           type: string
-          description: "Language of the input document."
-          example: "en"
+          description: Language of the input document.
+          example: en
     outputs:
       success:
         description: Success
@@ -450,19 +473,20 @@ endpoints:
                   "code": "MissingRequiredParameter",
                   "message": Missing required key 'Text' in params
                 }
-
   detect-sentiment:
-    description: Inspects text and returns an inference of the prevailing sentiment, POSITIVE, NEUTRAL, MIXED, or NEGATIVE
+    description: >-
+      Inspects text and returns an inference of the prevailing sentiment,
+      POSITIVE, NEUTRAL, MIXED, or NEGATIVE
     inputs:
       properties:
         Text:
           type: string
-          description: "A UTF-8 text string to detect sentiment."
-          example: "Bonjour monsieur Emmanuel"
+          description: A UTF-8 text string to detect sentiment.
+          example: Bonjour monsieur Emmanuel
         LanguageCode:
           type: string
-          description: "Language of the input document."
-          example: "en"
+          description: Language of the input document.
+          example: en
     outputs:
       success:
         description: Success
@@ -496,14 +520,15 @@ endpoints:
                   "code": "MissingRequiredParameter",
                   "message": Missing required key 'Text' in params
                 }
-
   list-topics-detection-jobs:
     description: Gets a list of the topic detection jobs that you have submitted
     inputs:
       properties:
         Filter:
           type: object
-          description: "Filters the jobs that are returned. Jobs can be filtered on their name, status, or the date and time that they were submitted"
+          description: >-
+            Filters the jobs that are returned. Jobs can be filtered on their
+            name, status, or the date and time that they were submitted
           example: |
             {
               "jobName": "STRING_VALUE",
@@ -513,16 +538,16 @@ endpoints:
             }
         MaxResults:
           type: integer
-          description: "The maximum number of results to return in each page"
+          description: The maximum number of results to return in each page
           example: 0
         NextToken:
           type: string
-          description: "Identifies the next page of results to return"
-          example: "STRING_VALUE"
+          description: Identifies the next page of results to return
+          example: STRING_VALUE
         LanguageCode:
           type: string
-          description: "Language of the input document."
-          example: "en"
+          description: Language of the input document.
+          example: en
     outputs:
       success:
         description: Success
@@ -567,22 +592,23 @@ endpoints:
                 {
                   "code": "ValidationException"
                 }
-
   start-topics-detection-job:
     description: Starts an asynchronous topic detection job
     inputs:
       properties:
         JobName:
           type: string
-          description: "The identifier of the job"
-          example: "sample-job"
+          description: The identifier of the job
+          example: sample-job
         DataAccessRoleArn:
           type: string
-          description: "The IAM Amazon Resource Name (ARN) for the role that grants Amazon Comprehend read access to your input data"
-          example: "AmazonComprehendServiceRole-comprehend-role"
+          description: >-
+            The IAM Amazon Resource Name (ARN) for the role that grants Amazon
+            Comprehend read access to your input data
+          example: AmazonComprehendServiceRole-comprehend-role
         InputDataConfig:
           type: object
-          description: "Specifies the format and location of the input data for the job"
+          description: Specifies the format and location of the input data for the job
           example: |
             {
               "S3Uri": "STRING_VALUE",
@@ -590,23 +616,25 @@ endpoints:
             }
         OutputDataConfig:
           type: object
-          description: "Specifies where to send the output files"
+          description: Specifies where to send the output files
           example: |
             {
               "S3Uri": "STRING_VALUE"
             }
         ClientRequestToken:
           type: string
-          description: "A unique identifier for the request. If you do not set the client request token, Amazon Comprehend generates one"
-          example: "sample-token"
+          description: >-
+            A unique identifier for the request. If you do not set the client
+            request token, Amazon Comprehend generates one
+          example: sample-token
         NumberOfTopics:
           type: number
-          description: "The number of topics to detect"
+          description: The number of topics to detect
           example: 0
         LanguageCode:
           type: string
-          description: "Language of the input document."
-          example: "en"
+          description: Language of the input document.
+          example: en
     outputs:
       success:
         description: Success
