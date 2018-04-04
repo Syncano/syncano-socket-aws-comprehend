@@ -12,13 +12,17 @@
     ]
   },
   "scripts": {
+    "build": "npm run build:src && npm run build:env",
+    "build:src": "sh ./bin/compile",
+    "build:env": "sh ./bin/compile-env",
     "test:e2e": "cross-env NODE_ENV=test nyc --reporter=html mocha --opts ./test/utils/mocha.opts ./test/*.test.js",
     "test": "npm run lint && npm run test:e2e && nyc report",
     "lint": "esw src test"
   },
   "dependencies": {
-    "aws-sdk": "^2.148.0",
-    "syncano-server": "beta"
+    "@syncano/cli": "^0.11.0",
+    "@syncano/core": "latest",
+    "aws-sdk": "^2.148.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -38,6 +42,21 @@
     "nock": "^9.1.5",
     "nyc": "^11.3.0",
     "supertest": "^3.0.0",
-    "syncano-test": "^0.3.3"
+    "@syncano/test": "^0.11.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "8"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
   }
 }
